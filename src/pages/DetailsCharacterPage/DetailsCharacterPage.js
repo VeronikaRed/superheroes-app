@@ -1,8 +1,7 @@
-import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import { Button } from '../../components';
-import { StyledTitle } from '../../styles';
+import { StyledTitle, StyledWrapperButton } from '../../styles';
 import {
     StyledDetails,
     StyledDetailsTop,
@@ -15,11 +14,9 @@ import {
 } from './style';
 import click from '../../resources/click.png';
 
-export const DetailsCharacterPage = ({ heroes }) => {
-    const { cardId } = useParams();
-
-    let characterCard = heroes.find(item => item.id === cardId);
+export const DetailsCharacterPage = ({ characterCard, onSetServerEvent }) => {
     const history = useHistory();
+
     const {
         id,
         nickname,
@@ -40,6 +37,23 @@ export const DetailsCharacterPage = ({ heroes }) => {
         const res = imagesHero.findIndex(item => item === image);
         imagesHero.splice(res, 1);
         setImagesHero(imagesHero.map(i => i));
+    };
+
+    const handleDeletePerson = async () => {
+        const url = `http://localhost:3001/delete`;
+        try {
+            await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: id })
+            });
+            onSetServerEvent(prev => !prev);
+            history.push(`/`);
+        } catch (e) {
+            console.error(e);
+        }
     };
 
     return (
@@ -77,10 +91,15 @@ export const DetailsCharacterPage = ({ heroes }) => {
                                         );
                                     })}
                             </StyledAdditionalPicturesWrapper>
+                        </StyledInfo>
+                        <StyledWrapperButton>
                             <Button onClick={handleEditProfile}>
                                 Edit character profile
                             </Button>
-                        </StyledInfo>
+                            <Button onClick={handleDeletePerson}>
+                                Delete character
+                            </Button>
+                        </StyledWrapperButton>
                     </StyledInfoWrapper>
                 </StyledDetailsTop>
             </StyledDetails>

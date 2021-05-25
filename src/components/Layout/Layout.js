@@ -4,7 +4,7 @@ import { Header } from '../Header';
 import { Footer } from '../Footer';
 import { StyledLayout, StyledMain, StyledMainWidthLimiter } from './styles';
 
-export const Layout = ({ children, ...other }) => (
+export const Layout = ({ children }) => (
     <StyledLayout>
         <Header />
 

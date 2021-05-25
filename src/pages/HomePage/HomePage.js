@@ -14,7 +14,6 @@ import { StyledTitle } from '../../styles';
 import { useHistory } from 'react-router-dom';
 
 export const HomePage = ({ heroes }) => {
-    console.log(heroes);
     const [currentPage, setCurrentPage] = useState(1);
     const [cardsPerPage] = useState(5);
 

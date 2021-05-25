@@ -1,3 +1,5 @@
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './styles';
 import { darkTheme } from './themes';
@@ -8,8 +10,7 @@ import {
     EditSuperheroPage,
     HomePage
 } from './pages';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { LayoutContainer } from './containers/LayoutContainer/LayoutContainer';
+import { DetailsPageContainer, LayoutContainer } from './containers';
 
 export const App = () => {
     return (
@@ -17,7 +18,7 @@ export const App = () => {
             <ThemeProvider theme={darkTheme}>
                 <GlobalStyles />
                 <LayoutContainer>
-                    {({ cards, onSetServerEvent, ...other }) => (
+                    {({ cards, onSetServerEvent }) => (
                         <Layout>
                             <Switch>
                                 <Route path="/" exact>
@@ -25,7 +26,16 @@ export const App = () => {
                                 </Route>
 
                                 <Route path="/character/:cardId">
-                                    <DetailsCharacterPage heroes={cards} />
+                                    <DetailsPageContainer>
+                                        {({ characterCard }) => (
+                                            <DetailsCharacterPage
+                                                characterCard={characterCard}
+                                                onSetServerEvent={
+                                                    onSetServerEvent
+                                                }
+                                            />
+                                        )}
+                                    </DetailsPageContainer>
                                 </Route>
 
                                 <Route path={['/editSuperhero/:cardId']}>
