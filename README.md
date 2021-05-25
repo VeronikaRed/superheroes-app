@@ -11,14 +11,13 @@
 
 # Дополнительная информация
 
-1.Создайте папку `back-end`;
-2.В консоле введите команды `git clone https://github.com/VeronikaRed/superheroes-app`,
-`cd superheroes-app/`
-3.Выполните команду `yarn` или `npm i` в терминале и дождитесь пока все необходимые пакеты будут установлены.
-4.Ввыполните команду `yarn start` или `npm start`, чтобы запустить локальный сервер.
-
-5.Создайте папку `front-end`;
-6.В консоле введите команды `git clone https://github.com/VeronikaRed/back-for-superheroes-app`,
-`cd back-for-superheroes-app/`
-7.Выполните команду `npm i` в терминале и дождитесь пока все необходимые пакеты будут установлены.
-8.Ввыполните команду `node index`, чтобы запустить локальный сервер.
+1.Создайте папку `back-end`;<br />
+2.В консоле введите команды `git clone https://github.com/VeronikaRed/superheroes-app`,<br />
+`cd superheroes-app/`<br />
+3.Выполните команду `yarn` или `npm i` в терминале и дождитесь пока все необходимые пакеты будут установлены.<br />
+4.Ввыполните команду `yarn start` или `npm start`, чтобы запустить локальный сервер.<br />
+5.Создайте папку `front-end`;<br />
+6.В консоле введите команды `git clone https://github.com/VeronikaRed/back-for-superheroes-app`,<br />
+`cd back-for-superheroes-app/`<br />
+7.Выполните команду `npm i` в терминале и дождитесь пока все необходимые пакеты будут установлены.<br />
+8.Ввыполните команду `node index`, чтобы запустить локальный сервер.<br />
