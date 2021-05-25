@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from './styles';
+import { darkTheme } from './themes';
+import { Layout } from './components';
+import {
+    CreateSuperheroPage,
+    DetailsCharacterPage,
+    EditSuperheroPage,
+    HomePage
+} from './pages';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { LayoutContainer } from './containers/LayoutContainer/LayoutContainer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export const App = () => {
+    return (
+        <BrowserRouter>
+            <ThemeProvider theme={darkTheme}>
+                <GlobalStyles />
+                <LayoutContainer>
+                    {({ cards, onSetServerEvent, ...other }) => (
+                        <Layout>
+                            <Switch>
+                                <Route path="/" exact>
+                                    <HomePage heroes={cards} />
+                                </Route>
 
-export default App;
+                                <Route path="/character/:cardId">
+                                    <DetailsCharacterPage heroes={cards} />
+                                </Route>
+
+                                <Route path={['/editSuperhero/:cardId']}>
+                                    <EditSuperheroPage
+                                        heroes={cards}
+                                        onSetServerEvent={onSetServerEvent}
+                                    />
+                                </Route>
+
+                                <Route path={['/createSuperhero']}>
+                                    <CreateSuperheroPage
+                                        onSetServerEvent={onSetServerEvent}
+                                    />
+                                </Route>
+                            </Switch>
+                        </Layout>
+                    )}
+                </LayoutContainer>
+            </ThemeProvider>
+        </BrowserRouter>
+    );
+};

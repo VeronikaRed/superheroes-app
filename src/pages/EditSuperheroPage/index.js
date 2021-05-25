@@ -1,0 +1,1 @@
+export { EditSuperheroPage } from './EditSuperheroPage';
